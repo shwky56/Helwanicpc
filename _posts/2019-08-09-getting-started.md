@@ -3,11 +3,10 @@ title: Basic Number Theory
 author: shwky
 date: 2023-01-11 20:55:00 +0020
 categories: [Level1, Week2]
-tags: [Leve1, math]
+tags: [Leve1, Week 2, mathe]
 pin: false
 math: true
 mermaid: true
-comments: true
 ---
 
 ## Modular Arithmetic
@@ -16,27 +15,30 @@ comments: true
 
 ### Division
 
-- For every integer **dividend** `n` and divisor `m ≠ 0`, there exists unique **quotient** `q` and **remainder** `r` such that.
+- For every integer **dividend** ```n``` and divisor ```m ≠ 0```, there exists unique **quotient** ```q``` and **remainder** ```r``` such that.
 
 $$ n = qm + r $$
 
 $$ 0 ≤ r < m $$
 
-- If r is the remainder after dividing `n` by `m`, we write `n mod m = r`
+- If r is the remainder after dividing ```n``` by ```m```, we write ```n mod m = r```
 
 > An example showing.
-> {: .prompt-info }
+{: .prompt-info }  
 
 $$ if \quad n = 14 \quad \textrm{and} \quad m = 6 $$
 
-$$ q = 14 \:/ \:6 = 2 \quad and \quad \:r \:= \:14 \:\% \:6 \:= \:2 $$
+$$ q = 14 \:/ \:6 = 2 \quad and \quad \:r \:=  \:14  \:\% \:6 \:= \:2 $$
 
 > Note.
-> {: .prompt-tip }
+{: .prompt-tip }
+
 
 - C++ % operator is the same as mod only for positive dividends
 
 - For negative dividends, % operator returns negative remainder (try it)
+
+
 
 $$ n = qm + r $$
 
@@ -44,11 +46,12 @@ $$ −m < r ≤ 0 $$
 
 - Reason: silly design, integer division, and requirement that
 
-$$ a\: / \:b \:\* \:b \:+ \:a \:\% \:b \:== \:a $$
+$$ a\: / \:b \:* \:b \:+ \:a \:\% \:b \:== \:a $$
 
 - To fix this, we need to add m at the end
 
 - To avoid needing to deal with positive and negative dividends differently, just always add m and take mod m afterwards
+
 
 ```cpp
 int mod(int a, int m) {
@@ -59,14 +62,15 @@ int mod(int a, int m) {
 ```
 
 > An example showing.
-> {: .prompt-info }
+{: .prompt-info } 
 
 ```
 -3 % 10 = -3
 (-3 + 10 ) % 10 = 7
 ```
 
----
+
+----
 
 ### Modular Addition
 
@@ -79,7 +83,6 @@ int mod_add(int a, int b, int m) {
 
 }
 ```
-
 ### Modular Subtraction
 
 ```cpp
@@ -103,8 +106,7 @@ int mod_mul(int a, int b, int m) {
 
 }
 ```
-
----
+----
 
 ## Divisibility, Primes
 
@@ -114,8 +116,8 @@ int mod_mul(int a, int b, int m) {
 - $d$ is a **divisor** or **factor** of $n$
 - $n$ is a **multiple** of $d$
 - $n$ is **divisible** by $d$
-- We write this as `d | n`
-- Theorem: `d | n` if and only if `n ≡ 0 (mod d)`
+- We write this as  ```d | n```
+- Theorem: ```d | n``` if and only if ```n ≡ 0 (mod d)```
 - Easy code:
 
 ```cpp
@@ -128,13 +130,12 @@ if(n % d == 0) {
 ```
 
 > Note.
-> {: .prompt-tip }
+{: .prompt-tip }
 
 - By our definition
-
-  - `0` is divisible by any integer
-  - No integer is divisible by `0`, except...
-  - `0` is divisible by `0`
+  - ```0``` is divisible by any integer
+  - No integer is divisible by ```0```, except...
+  - ```0``` is divisible by ```0```
 
 - However, in practice, using the % operator with 0 right operand causes programs to crash (division by zero error)
 
@@ -142,30 +143,30 @@ if(n % d == 0) {
 
 {% include embed/youtube.html id='nUFsapuZQ-c' %}
 
-- An integer `n > 1` is **prime** if the only integers dividing it are `1 and n`
+- An integer ```n > 1``` is **prime** if the only integers dividing it are ```1 and n```
 - Otherwise it is **composite**
-- Integers `≤ 1` are considered neither prime nor composite
+- Integers ```≤ 1``` are considered neither prime nor composite
 
 ### Primality Testing
 
-- Easy way: look for a divisor between `2 and n − 1`
+- Easy way: look for a divisor between ```2 and n − 1```
 - This is $O(n)$ time
 - Theorem: If $n$ is composite, then it has a divisor ≤ $\sqrt{n}$
-- Proof: If $ab = n$ and $ a > \sqrt{n}$ then $ \frac{1}{a} < \frac{1}{\sqrt{n}}$
-- Means, we only need to test $O(\sqrt{n})$ integers for divisibility
+ - Proof: If $ab = n$ and  $ a  > \sqrt{n}$ then $ \frac{1}{a} < \frac{1}{\sqrt{n}}$
+ - Means, we only need to test $O(\sqrt{n})$ integers for divisibility
 
 #### Primality Testing by Trial Division in $O(\sqrt{n})$
 
-```cpp
-bool is_prime(long long n) {
+ ```cpp
+ bool is_prime(long long n) {
 
-   bool ans = true;
-     for(long long i = 2; i * i <= n; i++)
+    bool ans = true;
+      for(long long i = 2; i * i <= n; i++)
 
-         if(n % i == 0)
-           ans = false;
+          if(n % i == 0)
+            ans = false;
 
-   return ans;
+    return ans;
 
 }
 ```
@@ -184,12 +185,12 @@ bool is_prime(long long n) {
 - Idea: for any integer $i ≥ 2$, ki is composite for all $k > 1$
 - Initially assume all integers are prime
 - Go through all integers and and mark all of their multiples (not equal
-  to themselves) composite
+to themselves) composite
 - Theorem: The numbers that are not marked are prime
 - Proof: If $p$ is not marked, then there is no $k > 1$ and i between 2 and
-  p where $ki = p$
+p where $ki = p$
 
-#### Sieve of Eratosthenes c++ code
+#### Sieve of Eratosthenes c++ code 
 
 ```cpp
 bool is_prime[MAX_N+1];
@@ -208,34 +209,34 @@ void sieve(int n) {
 }
 ```
 
+
 ### Sieve of Eratosthenes: Analysis
 
 - Double nested for loop appears to be $O(n^2);$ however...
 
 - Only $ \frac{n}{i} + C$ multiples for iteration $i$
 
-$$ \sum*{i=2}^{n} \frac{n}{i} = n \sum*{i=2}^n \frac{i}{i}$$
+$$ \sum_{i=2}^{n} \frac{n}{i} = n \sum_{i=2}^n \frac{i}{i}$$
 
 - The sum $\sum_{i=2}^n \frac{i}{i}$ is called the **harmonic** series
 
 - Bounds for the harmonic series
 
-$$ \sum\_{i=2}^n \frac{i}{i} = \frac{1}{2} + \frac{1}{3} +\frac{1}{4} +\frac{1}{5} +\frac{1}{6} +\frac{1}{7} +\frac{1}{8} +\frac{1}{9} +\frac{1}{10} +\frac{1}{11} +\frac{1}{12} +\frac{1}{13} +\frac{1}{14} +\frac{1}{15}$$
 
-$$
-\: \: \: \: \: \: \: \: \: \: \: \: \: \: \: <
- \frac{1}{2} +\frac{1}{2} +\frac{1}{4} +\frac{1}{4} +\frac{1}{4} +\frac{1}{4} +\frac{1}{8} +\frac{1}{8} +\frac{1}{8} +\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8}
-$$
+$$ \sum_{i=2}^n \frac{i}{i} = \frac{1}{2} + \frac{1}{3} +\frac{1}{4} +\frac{1}{5} +\frac{1}{6} +\frac{1}{7} +\frac{1}{8} +\frac{1}{9} +\frac{1}{10} +\frac{1}{11} +\frac{1}{12} +\frac{1}{13} +\frac{1}{14} +\frac{1}{15}$$
+$$ \: \: \: \: \: \: \: \: \: \: \: \: \: \: \: < 
+ \frac{1}{2} +\frac{1}{2} +\frac{1}{4} +\frac{1}{4} +\frac{1}{4} +\frac{1}{4} +\frac{1}{8} +\frac{1}{8} +\frac{1}{8} +\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8} $$
 
 $$ = \log_2 n$$
 
-_(the number of powers of two up to n)_
+*(the number of powers of two up to n)*
 
 ### A Minor Speedup
 
 - Notice that when we reach some composite number i, all its multiples are already crossed out
   - For all integers ki, if p divides i, then p also divides ki
 - Only mark multiples of prime numbers
+
 
 ```cpp
 bool is_prime[MAX_N+1];
@@ -255,12 +256,98 @@ void sieve(int n) {
 
 }
 ```
-
 ### Practice Problems
 
 - [problem 1](https://www.spoj.com/problems/TDPRIMES/)
 
+
+
+
+## Prime Factor
+
+{% include embed/youtube.html id='DlzXoNbpgJg' %}
+
+- Prime factor is the factor of the given number which is a prime number. Factors are the numbers you multiply together to get another number. In simple words, prime factor is finding which prime numbers multiply together to make the original number.
+
+- Example: The prime factors of 15 are 3 and 5 (because 3×5=15, and 3 and 5 are prime numbers). 
+
+![Desktop View](https://media.geeksforgeeks.org/wp-content/uploads/6-min-1.png){: width="972" height="589" .w-75 .normal}
+
+
+
+
+### Some interesting fact about Prime Factor : 
+
+1. There is only one (unique!) set of prime factors for any number.
+1. In order to maintain this property of unique prime factorizations, it is necessary that the number one, 1, be categorized as neither prime nor composite.
+1. Prime factorizations can help us with divisibility, simplifying fractions, and finding common denominators for fractions.
+1. Pollard’s Rho is a prime factorization algorithm, particularly fast for a large composite number with small prime factors.
+1. Cryptography is the study of secret codes. Prime Factorization is very important to people who try to make (or break) secret codes based on numbers.
+
+### How to print a prime factor of a number?
+
+__solution:__
+
+
+Given a number ```n```, write a function to print all prime factors of ```n```. For example, if the input number is ```12```, then output should be ```“2 2 3”``` and if the input number is ```315```, then output should be ```“3 3 5 7”```.
+
+**Following are the steps to find all prime factors:**
+
+1. While n is divisible by 2, print 2 and divide n by 2.
+1. After step 1, n must be odd. Now start a loop from i = 3 to square root of n. While i divides n, print i and divide n by i, increment i by 2 and continue.
+1. If n is a prime number and is greater than 2, then n will not become 1 by above two steps. So print n if it is greater than 2.
+
+```cpp
+// Program to print all prime factors
+# include <stdio.h>
+# include <math.h>
+	
+// A function to print all prime factors of a given number n
+void primeFactors(int n)
+{
+	// Print the number of 2s that divide n
+	while (n%2 == 0)
+	{
+		printf("%d ", 2);
+		n = n/2;
+	}
+	
+	// n must be odd at this point. So we can skip
+	// one element (Note i = i +2)
+	for (int i = 3; i <= sqrt(n); i = i+2)
+	{
+		// While i divides n, print i and divide n
+		while (n%i == 0)
+		{
+			printf("%d ", i);
+			n = n/i;
+		}
+	}
+	
+	// This condition is to handle the case when n
+	// is a prime number greater than 2
+	if (n > 2)
+		printf ("%d ", n);
+}
+	
+/* Driver program to test above function */
+int main()
+{
+	int n = 315;
+	primeFactors(n);
+	return 0;
+}
+```
+
+
+
+
+
+
+-----
+
 ## Euclidean algorithm for computing the greatest common divisor
+
 
 {% include embed/youtube.html id='_KtHd3dRyX4' %}
 
