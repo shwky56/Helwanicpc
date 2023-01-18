@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/cotes2020/jekyll-theme-chirpy#readme",
   "scripts": {
+    "dev": "bundle exec jekyll serve --livereload",
     "test": "npx stylelint _sass/**/*.scss",
     "fixlint": "npx stylelint _sass/**/*.scss --fix"
   },
