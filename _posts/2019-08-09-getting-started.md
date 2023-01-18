@@ -4,7 +4,7 @@ author: shwky
 date: 2023-01-11 20:55:00 +0020
 categories: [Level1, Week2]
 tags: [Leve1, Week 2, mathe]
-pin: true
+pin: false
 math: true
 mermaid: true
 ---
@@ -259,6 +259,92 @@ void sieve(int n) {
 ### Practice Problems
 
 - [problem 1](https://www.spoj.com/problems/TDPRIMES/)
+
+
+
+
+## Prime Factor
+
+{% include embed/youtube.html id='DlzXoNbpgJg' %}
+
+- Prime factor is the factor of the given number which is a prime number. Factors are the numbers you multiply together to get another number. In simple words, prime factor is finding which prime numbers multiply together to make the original number.
+
+- Example: The prime factors of 15 are 3 and 5 (because 3×5=15, and 3 and 5 are prime numbers). 
+
+![Desktop View](https://media.geeksforgeeks.org/wp-content/uploads/6-min-1.png){: width="972" height="589" .w-75 .normal}
+
+
+
+
+### Some interesting fact about Prime Factor : 
+
+1. There is only one (unique!) set of prime factors for any number.
+1. In order to maintain this property of unique prime factorizations, it is necessary that the number one, 1, be categorized as neither prime nor composite.
+1. Prime factorizations can help us with divisibility, simplifying fractions, and finding common denominators for fractions.
+1. Pollard’s Rho is a prime factorization algorithm, particularly fast for a large composite number with small prime factors.
+1. Cryptography is the study of secret codes. Prime Factorization is very important to people who try to make (or break) secret codes based on numbers.
+
+### How to print a prime factor of a number?
+
+__solution:__
+
+
+Given a number ```n```, write a function to print all prime factors of ```n```. For example, if the input number is ```12```, then output should be ```“2 2 3”``` and if the input number is ```315```, then output should be ```“3 3 5 7”```.
+
+**Following are the steps to find all prime factors:**
+
+1. While n is divisible by 2, print 2 and divide n by 2.
+1. After step 1, n must be odd. Now start a loop from i = 3 to square root of n. While i divides n, print i and divide n by i, increment i by 2 and continue.
+1. If n is a prime number and is greater than 2, then n will not become 1 by above two steps. So print n if it is greater than 2.
+
+```cpp
+// Program to print all prime factors
+# include <stdio.h>
+# include <math.h>
+	
+// A function to print all prime factors of a given number n
+void primeFactors(int n)
+{
+	// Print the number of 2s that divide n
+	while (n%2 == 0)
+	{
+		printf("%d ", 2);
+		n = n/2;
+	}
+	
+	// n must be odd at this point. So we can skip
+	// one element (Note i = i +2)
+	for (int i = 3; i <= sqrt(n); i = i+2)
+	{
+		// While i divides n, print i and divide n
+		while (n%i == 0)
+		{
+			printf("%d ", i);
+			n = n/i;
+		}
+	}
+	
+	// This condition is to handle the case when n
+	// is a prime number greater than 2
+	if (n > 2)
+		printf ("%d ", n);
+}
+	
+/* Driver program to test above function */
+int main()
+{
+	int n = 315;
+	primeFactors(n);
+	return 0;
+}
+```
+
+
+
+
+
+
+-----
 
 ## Euclidean algorithm for computing the greatest common divisor
 
