@@ -2,8 +2,8 @@
 title: Basic Number Theory
 author: shwky
 date: 2023-01-11 20:55:00 +0020
-categories: [Level1, Week2]
-tags: [Leve1, Week 2, mathe]
+categories: [Level1, Level1 Week2]
+tags: [Leve1, Week 2, math]
 pin: false
 math: true
 mermaid: true
