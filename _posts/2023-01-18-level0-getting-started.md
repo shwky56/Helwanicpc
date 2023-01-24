@@ -2,7 +2,7 @@
 title: Level 0 - Getting Started
 author: iifire
 date: 2022-12-09 10:56:00 +0020
-categories: [Level0, getting started]
+categories: [Level0, Level0 getting started]
 tags: [Level0]
 pin: true
 math: true
